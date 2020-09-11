@@ -16,6 +16,10 @@ export default {
     return Math.floor(Math.random() * Math.floor(max));
   },
 
+  updateItemColor: (items, targetId, newColor) => {
+    return items.map(item => item.id === targetId ? { ...item, color: newColor } : item);
+  },
+
   openBase64(base64URL, fileType) { // Display a base64 URL inside an iframe in another window.
     const win = window.open();
     if (fileType === 'image') win.document.write(`<img src="${base64URL}" style="border:0; top:0px; left:0px; bottom:0px; right:0px; max-width:100%; max-height:100%;"/>`);

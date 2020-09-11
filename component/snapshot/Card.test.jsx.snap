@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="user-card"
+    data-testid="Zoe Lee-card"
+  >
+    <h3>
+      Zoe Lee
+    </h3>
+    <hr />
+    <ul
+      class="user-info-list"
+    >
+      <li
+        class="user-info-item"
+      >
+        <h4>
+          Age:
+        </h4>
+        <p>
+          25
+        </p>
+      </li>
+      <li
+        class="user-info-item"
+      >
+        <h4>
+          Gender:
+        </h4>
+        <p>
+          Female
+        </p>
+      </li>
+      <li
+        class="user-info-item"
+      >
+        <h4>
+          Country:
+        </h4>
+        <p>
+          Korea
+        </p>
+      </li>
+    </ul>
+  </div>
+</DocumentFragment>
+`;

@@ -1,0 +1,36 @@
+{
+  "name": "FE-Testing",
+  "version": "1.0.0",
+  "description": "Example unit testing repo for Front-end.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SynapseUI/FE-Testing.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SynapseUI/FE-Testing/issues"
+  },
+  "homepage": "https://github.com/SynapseUI/FE-Testing#readme",
+  "dependencies": {
+    "@babel/preset-env": "^7.12.1",
+    "babel-jest": "^26.6.3",
+    "jest": "^26.6.3"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "bower_components",
+      "src"
+    ]
+  }
+}

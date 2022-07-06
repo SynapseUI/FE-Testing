@@ -20,4 +20,4 @@ jobs:
           token: "${{ secrets.TEST_PAT }}"
           path: 'dev_scripts'
       - run: npm i
-      - run: ls -la dev_scripts
+      - run: ls -la dev_scripts/scripts

@@ -21,3 +21,7 @@ jobs:
           path: 'dev_scripts'
       - run: npm i
       - run: ls -la dev_scripts/scripts
+      - run: ls -la dev_scripts/scripts
+      - run: ls -la dev_scripts/scripts
+      - run: ls -la dev_scripts/scripts
+      - run: ls -la dev_scripts/scripts

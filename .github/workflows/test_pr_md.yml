@@ -1,0 +1,23 @@
+on: push
+
+jobs:
+  test-coverage:
+    runs-on: ubuntu-latest
+    env:
+      NODE_OPTIONS: '--max_old_space_size=4096'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - run: mkdir scripts
+      - run: npm i
+
+      - name: Check out dev scripts
+        uses: actions/checkout@v2
+        with:
+          repository: SynapseUI/dev_scripts
+          token: "${{ secrets.TEST_PAT }}"
+          path: 'scripts'
+      - run: npm i
+      - run: ls -la

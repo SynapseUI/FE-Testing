@@ -9,10 +9,10 @@ jobs:
       - run: mkdir repo
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          path: repo
         uses: technote-space/get-diff-action@v4
+        # with:
+        #   fetch-depth: 0
+        #   path: repo
 
       - run: mkdir dev_scripts
       - run: npm --prefix repo install
@@ -24,6 +24,6 @@ jobs:
           token: "${{ secrets.TEST_PAT }}"
           path: 'dev_scripts'
 
-      - run: cd repo
+      # - run: cd repo
       - run: ls -la
 

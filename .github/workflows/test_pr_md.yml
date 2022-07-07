@@ -21,6 +21,5 @@ jobs:
           repository: SynapseUI/dev_scripts
           token: "${{ secrets.TEST_PAT }}"
           path: 'dev_scripts'
-      - run: npm --prefix dev_scripts install
       - run: cat dev_scripts/scripts/makePrMarkdown.js
       # - run: node dev_scripts/scripts/makePrMarkdown.js --print-only test-branch master

@@ -14,7 +14,7 @@ jobs:
           fetch-depth: 0
           path: repo
 
-      - run: npm --prefix repo install
+      # - run: npm --prefix repo install
       - run: mkdir dev_scripts
 
 
@@ -37,7 +37,11 @@ jobs:
         run: ls -l .prMarkdown
 
       - run: echo ${{ github.head_ref }}
-      - run: echo ${{ github.base_ref }}
+      - run: echo "${{ github.head_ref }}"
+      - run: echo ${{ GITHUB_HEAD_REF }}
+      - run: echo "${{ GITHUB_HEAD_REF }}"
+      - run: echo " $GITHUB_HEAD_REF "
+      - run: echo ${ GITHUB_HEAD_REF }
 
       # - id: get-comment-body
       #   run: |

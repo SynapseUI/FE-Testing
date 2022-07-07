@@ -42,20 +42,21 @@ jobs:
           body="${body//$'\r'/'%0D'}" 
           echo "::set-output name=body::$body"
 
-      - name: Find Comment
-        uses: peter-evans/find-comment@v2
-        id: fc
-        with:
-          issue-number: ${{ github.event.number }}
-          # comment-author: ${{ github.event.pull_request.user.login }}
-          body-includes: Task Link
-          token: "${{ secrets.TEST_PAT }}"
-      - run: echo ${{ steps.fc.outputs.comment-id }}
-
-      - name: Update comment
-        uses: peter-evans/create-or-update-comment@v2
-        with:
-          # issue-number: ${{ github.event.number }}
-          comment-id: ${{ steps.fc.outputs.comment-id }}
-          body: ${{ steps.get-comment-body.outputs.body }}
-          token: "${{ secrets.TEST_PAT }}"
+    # - name: pull-request
+    #   uses: repo-sync/pull-request@v2
+    #   with:
+    #     github_token: "${{ secrets.TEST_PAT }}"
+    #     destination_branch: release
+    #     pr_title: Release
+    - name: update-pull-request
+      uses: kt3k/update-pr-description@v1.0.1
+      with:
+        pr_body: ${{ steps.description.outputs.description }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Update comment
+      #   uses: peter-evans/create-or-update-comment@v2
+      #   with:
+      #     # issue-number: ${{ github.event.number }}
+      #     comment-id: ${{ steps.fc.outputs.comment-id }}
+      #     body: ${{ steps.get-comment-body.outputs.body }}
+      #     token: "${{ secrets.TEST_PAT }}"

@@ -31,7 +31,7 @@ jobs:
       # - run: cd repo
       - run: ls -la repo
       - run: ls -la dev_scripts
-      - run: git -C repo diff --name-only origin/master..origin/test-branch
+      - run: git -C repo diff --name-only origin/master..
       # - run: git --git-dir=repo --work-tree=diff_dir diff --name-only --no-index
       # - run: git -C repo diff --name-only master..test-branch
 

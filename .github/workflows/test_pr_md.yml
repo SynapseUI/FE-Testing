@@ -1,4 +1,5 @@
-on: push
+# on: push
+on: pull-request
 
 jobs:
   format-pr-comment:
@@ -29,10 +30,25 @@ jobs:
         run: |
           node \
           dev_scripts/scripts/makePrMarkdown.js \
-          --print-only \
           --repo-dir=repo \
           test-branch master
-      # - run: git -C repo diff --name-only origin/master..
-      # - run: git --git-dir=repo --work-tree=diff_dir diff --name-only --no-index
-      # - run: git -C repo diff --name-only master..test-branch
 
+      - name: show new file
+        run: ls -l repo/prMarkdown
+
+      - run: echo ${{ github.head_ref }}
+      - run: echo ${{ github.base_ref }}
+
+      # - id: get-comment-body
+      #   run: |
+      #     body="$(cat repo/.prMarkdown)"
+      #     body="${body//'%'/'%25'}"
+      #     body="${body//$'\n'/'%0A'}"
+      #     body="${body//$'\r'/'%0D'}" 
+      #     echo "::set-output name=body::$body"
+
+      # - name: Create comment
+      #   uses: peter-evans/create-or-update-comment@v2
+      #   with:
+      #     issue-number: 1
+      #     body: ${{ steps.get-comment-body.outputs.body }}

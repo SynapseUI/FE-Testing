@@ -47,9 +47,18 @@ jobs:
         id: fc
         with:
           issue-number: ${{ github.event.number }}
-          body-includes: search string 1
-      # - name: Create comment
-      #   uses: peter-evans/create-or-update-comment@v2
-      #   with:
-      #     issue-number: 1
-      #     body: ${{ steps.get-comment-body.outputs.body }}
+          body-includes: Task Link
+
+      - name: Update comment
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          body: |
+            **Edit:** Some additional info
+          reactions: eyes
+
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          issue-number: 1
+          body: ${{ steps.get-comment-body.outputs.body }}

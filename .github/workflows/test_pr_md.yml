@@ -7,12 +7,12 @@ jobs:
       NODE_OPTIONS: '--max_old_space_size=4096'
     steps:
       - run: mkdir repo
-      - name: Checkout code
-        uses: actions/checkout@v2
-        uses: technote-space/get-diff-action@v4
-        # with:
-        #   fetch-depth: 0
-        #   path: repo
+      # - name: Checkout code
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          path: repo
+      - uses: technote-space/get-diff-action@v4
 
       - run: mkdir dev_scripts
       - run: npm --prefix repo install

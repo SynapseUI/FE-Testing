@@ -24,9 +24,6 @@ jobs:
 
       - run: cd repo
       - run: ls -la
-      - run: |
-          node \
-          dev_scripts/scripts/makePrMarkdown.js \
-          --print-only \
-          --repo-dir=repo \
-          test-branch master
+      - name: testing git diff action
+        uses: technote-space/get-diff-action@v4
+

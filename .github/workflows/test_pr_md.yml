@@ -13,6 +13,8 @@ jobs:
           fetch-depth: 0
           path: repo
       - uses: technote-space/get-diff-action@v4
+        with:
+          PATTERNS: *
 
       - run: mkdir dev_scripts
       - run: npm --prefix repo install

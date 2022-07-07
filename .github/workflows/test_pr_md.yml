@@ -6,7 +6,7 @@ jobs:
     env:
       NODE_OPTIONS: '--max_old_space_size=4096'
     steps:
-    - run: mkdir repo
+      - run: mkdir repo
       - name: Checkout code
         uses: actions/checkout@v2
         with:

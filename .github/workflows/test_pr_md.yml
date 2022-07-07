@@ -50,7 +50,7 @@ jobs:
           comment-author: ${{ github.event.pull_request.user.login }}
           token: "${{ secrets.TEST_PAT }}"
 
-      - run: echo '${{ steps.fc.outputs.comment-id }}'
+      - run: echo ${{ steps.fc.outputs.comment-id }}
       - name: Update comment
         uses: peter-evans/create-or-update-comment@v2
         with:

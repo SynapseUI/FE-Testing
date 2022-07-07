@@ -6,11 +6,13 @@ jobs:
     env:
       NODE_OPTIONS: '--max_old_space_size=4096'
     steps:
+    - run: mkdir repo
       - name: Checkout code
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - run: mkdir /home/runner/work/dev_scripts
+          path: repo
+      - run: mkdir dev_scripts
       # - run: npm i
 
       - name: Check out dev scripts
@@ -20,8 +22,8 @@ jobs:
           token: "${{ secrets.TEST_PAT }}"
           path: '/home/runner/work/dev_scripts'
       # - run: npm i
-      - run: ls -la /home/runner/work/
-      - run: ls -la /home/runner/work/dev_scripts
-      - run: ls -la /home/runner/work/dev_scripts/scripts
+      - run: ls -la repo
+      - run: ls -la dev_scripts
+      - run: ls -la dev_scripts/scripts
       # - run: ls -la ../dev_scripts/scripts
       # - run: ls -la dev_scripts/scripts/makePrMarkdown.js

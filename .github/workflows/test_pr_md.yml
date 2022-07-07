@@ -26,5 +26,6 @@ jobs:
       # - run: cd repo
       - run: ls -la repo
       - run: ls -la dev_scripts
-      - run: git -C repo diff --name-only master..test-branch
+      - run: git branch
+      # - run: git -C repo diff --name-only master..test-branch
 

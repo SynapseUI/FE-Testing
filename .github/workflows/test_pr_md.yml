@@ -7,14 +7,12 @@ jobs:
       NODE_OPTIONS: '--max_old_space_size=4096'
     steps:
       - run: mkdir repo
-      # - name: Checkout code
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
+        checkout: ['master', 'test-branch']
         with:
           fetch-depth: 0
           path: repo
-      - uses: technote-space/get-diff-action@v4
-        with:
-          PATTERNS: *
 
       - run: mkdir dev_scripts
       - run: npm --prefix repo install
@@ -28,4 +26,5 @@ jobs:
 
       # - run: cd repo
       - run: ls -la
+      - run: git -C repo diff --name-only master..test-branch
 

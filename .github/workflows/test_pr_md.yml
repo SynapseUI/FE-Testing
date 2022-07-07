@@ -6,17 +6,19 @@ jobs:
     env:
       NODE_OPTIONS: '--max_old_space_size=4096'
     steps:
+      - run: mkdir repo
       - name: Checkout code into repo dir
-        run: mkdir repo
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
           path: repo
-        run: npm --prefix repo install
+
+      - run: npm --prefix repo install
+      - run: mkdir dev_scripts
+
 
 
       - name: Check out dev_scripts
-        run: mkdir dev_scripts
         uses: actions/checkout@v2
         with:
           repository: SynapseUI/dev_scripts

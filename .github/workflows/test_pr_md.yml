@@ -25,6 +25,7 @@ jobs:
           path: 'dev_scripts'
 
       # - run: cd repo
-      - run: ls -la
+      - run: ls -la repo
+      - run: ls -la dev_scripts
       - run: git -C repo diff --name-only master..test-branch
 

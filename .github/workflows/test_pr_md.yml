@@ -46,7 +46,8 @@ jobs:
         uses: peter-evans/find-comment@v2
         id: fc
         with:
-          issue-number: ${{ github.event.pull_request.id }}
+          # issue-number: ${{ github.event.pull_request.id }}
+          issue-number: ${{ github.event.number }}
           comment-author: ${{ github.event.pull_request.user.login }}
 
       - name: Update comment

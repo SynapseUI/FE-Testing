@@ -31,17 +31,10 @@ jobs:
           node \
           dev_scripts/scripts/makePrMarkdown.js \
           --repo-dir=repo \
-          test-branch master
+          ${{ github.head_ref }} ${{ github.base_ref }}
 
       - name: show new file
-        run: ls -l .prMarkdown
-
-      # - run: echo ${{ github.head_ref }}
-      # - run: echo "${{ github.head_ref }}"
-      - run: echo '${{ github.head_ref }}'
-      - run: echo '${{ github.base_ref }}'
-      - run: echo '${{ toJSON(github) }}'
-      # - run: echo ${ GITHUB_HEAD_REF }
+        run: cat .prMarkdown/prUpdates-${{ github.head_ref }}.md
 
       # - id: get-comment-body
       #   run: |

@@ -12,6 +12,8 @@ jobs:
         with:
           fetch-depth: 0
           path: repo
+        uses: technote-space/get-diff-action@v4
+
       - run: mkdir dev_scripts
       - run: npm --prefix repo install
 
@@ -24,6 +26,4 @@ jobs:
 
       - run: cd repo
       - run: ls -la
-      - name: testing git diff action
-        uses: technote-space/get-diff-action@v4
 

@@ -20,7 +20,7 @@ jobs:
         with:
           repository: SynapseUI/dev_scripts
           token: "${{ secrets.TEST_PAT }}"
-          path: '/home/runner/work/dev_scripts'
+          path: 'dev_scripts'
       # - run: npm i
       - run: ls -la repo
       - run: ls -la dev_scripts

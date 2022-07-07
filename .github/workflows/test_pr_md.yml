@@ -6,32 +6,31 @@ jobs:
     env:
       NODE_OPTIONS: '--max_old_space_size=4096'
     steps:
-      - run: mkdir repo
-      - run: mkdir diff_dir
-      - uses: actions/checkout@v2
+      - name: Checkout code into repo dir
+        run: mkdir repo
+        uses: actions/checkout@v2
         with:
           fetch-depth: 0
           path: repo
-      # - uses: actions/checkout@v3
-      #   with:
-      #     fetch-depth: 0
-      #     path: diff_dir
-      #     ref: master
+        run: npm --prefix repo install
 
-      - run: mkdir dev_scripts
-      # - run: npm --prefix repo install
 
-      - name: Check out dev scripts
+      - name: Check out dev_scripts
+        run: mkdir dev_scripts
         uses: actions/checkout@v2
         with:
           repository: SynapseUI/dev_scripts
           token: "${{ secrets.TEST_PAT }}"
           path: 'dev_scripts'
 
-      # - run: cd repo
-      - run: ls -la repo
-      - run: ls -la dev_scripts
-      - run: git -C repo diff --name-only origin/master..
+      - name: Run devscripts
+      - run: |
+          node \
+          dev_scripts/scripts/makePrMarkdown.js \
+          --print-only \
+          --repo-dir=repo \
+          test-branch master
+      # - run: git -C repo diff --name-only origin/master..
       # - run: git --git-dir=repo --work-tree=diff_dir diff --name-only --no-index
       # - run: git -C repo diff --name-only master..test-branch
 

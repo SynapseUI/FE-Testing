@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: SynapseUI/dev_scripts
-          token: "${{ secrets.TEST_PAT }}"
+          token: "${{ secrets.GH_PAT_PRMD }}"
           path: 'dev_scripts'
 
       - name: Run devscripts
@@ -41,7 +41,7 @@ jobs:
       - name: pr update
         uses: tzkhan/pr-update-action@v2
         with:
-          repo-token: "${{ secrets.TEST_PAT }}"
+          repo-token: "${{ secrets.GH_PAT_PRMD }}"
           base-branch-regex: '.*'
           body-template: ${{ steps.get-comment-body.outputs.body }}
           body-update-action: 'replace'

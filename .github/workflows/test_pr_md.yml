@@ -7,14 +7,18 @@ jobs:
       NODE_OPTIONS: '--max_old_space_size=4096'
     steps:
       - run: mkdir repo
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
           path: repo
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          path: repo
+          ref: master
 
       - run: mkdir dev_scripts
-      - run: npm --prefix repo install
+      # - run: npm --prefix repo install
 
       - name: Check out dev scripts
         uses: actions/checkout@v2

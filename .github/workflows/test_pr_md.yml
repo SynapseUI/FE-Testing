@@ -24,8 +24,9 @@ jobs:
 
       - run: cd repo
       - run: ls -la
-      - run: | 
+      - run: |
           node \
-          ../dev_scripts/scripts/makePrMarkdown.js \
+          dev_scripts/scripts/makePrMarkdown.js \
           --print-only \
+          --repo-dir=repo \
           test-branch master

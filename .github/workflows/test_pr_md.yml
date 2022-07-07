@@ -21,5 +21,11 @@ jobs:
           repository: SynapseUI/dev_scripts
           token: "${{ secrets.TEST_PAT }}"
           path: 'dev_scripts'
-      - run: cat dev_scripts/scripts/makePrMarkdown.js
-      # - run: node dev_scripts/scripts/makePrMarkdown.js --print-only test-branch master
+
+      - run: cd repo
+      - run: ls -la
+      - run: | 
+          node \
+          ../dev_scripts/scripts/makePrMarkdown.js \
+          --print-only \
+          test-branch master

@@ -1,8 +1,7 @@
-# on: push
 on: pull_request
 
 jobs:
-  format-pr-comment:
+  format-pr-description:
     runs-on: ubuntu-latest
     env:
       NODE_OPTIONS: '--max_old_space_size=4096'
@@ -28,15 +27,12 @@ jobs:
           node \
           dev_scripts/scripts/makePrMarkdown.js \
           --repo-dir=repo \
-          --file-name=comment_body \
+          --file-name=pr_desc \
           ${{ github.head_ref }} ${{ github.base_ref }}
-
-      - name: show new file
-        run: cat .prMarkdown/comment_body.md
 
       - id: get-comment-body
         run: |
-          body="$(cat .prMarkdown/comment_body.md)"
+          body="$(cat .prMarkdown/pr_desc.md)"
           body="${body//'%'/'%25'}"
           body="${body//$'\n'/'%0A'}"
           body="${body//$'\r'/'%0D'}" 
@@ -50,8 +46,3 @@ jobs:
           body-template: ${{ steps.get-comment-body.outputs.body }}
           body-update-action: 'replace'
           body-uppercase-base-match: false
-      # - name: update-pull-request
-      #   uses: kt3k/update-pr-description@v1.0.1
-      #   with:
-      #     pr_body: ${{ steps.description.outputs.description }}
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}

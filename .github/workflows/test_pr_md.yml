@@ -9,7 +9,6 @@ jobs:
       - run: mkdir repo
       - name: Checkout code
         uses: actions/checkout@v2
-          checkout: ['master', 'test-branch']
         with:
           fetch-depth: 0
           path: repo

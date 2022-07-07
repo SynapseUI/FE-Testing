@@ -1,4 +1,5 @@
-on: push
+# on: push
+on: pull_request
 
 jobs:
   format-pr-comment:
@@ -6,18 +7,51 @@ jobs:
     env:
       NODE_OPTIONS: '--max_old_space_size=4096'
     steps:
-      - name: Checkout code
+      - run: mkdir repo
+      - name: Checkout code into repo dir
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - run: mkdir dev_scripts
-      - run: npm i
+          path: repo
 
-      - name: Check out dev scripts
+      - run: mkdir dev_scripts
+
+      - name: Check out dev_scripts
         uses: actions/checkout@v2
         with:
           repository: SynapseUI/dev_scripts
           token: "${{ secrets.TEST_PAT }}"
           path: 'dev_scripts'
-      - run: npm i
-      - run: ls -la dev_scripts/scripts
+
+      - name: Run devscripts
+        run: |
+          node \
+          dev_scripts/scripts/makePrMarkdown.js \
+          --repo-dir=repo \
+          --file-name=comment_body \
+          ${{ github.head_ref }} ${{ github.base_ref }}
+
+      - name: show new file
+        run: cat .prMarkdown/comment_body.md
+
+      - id: get-comment-body
+        run: |
+          body="$(cat .prMarkdown/comment_body.md)"
+          body="${body//'%'/'%25'}"
+          body="${body//$'\n'/'%0A'}"
+          body="${body//$'\r'/'%0D'}" 
+          echo "::set-output name=body::$body"
+
+      - name: pr update
+        uses: tzkhan/pr-update-action@v2
+        with:
+          repo-token: "${{ secrets.TEST_PAT }}"
+          base-branch-regex: '.*'
+          body-template: ${{ steps.get-comment-body.outputs.body }}
+          body-update-action: 'replace'
+          body-uppercase-base-match: false
+      # - name: update-pull-request
+      #   uses: kt3k/update-pr-description@v1.0.1
+      #   with:
+      #     pr_body: ${{ steps.description.outputs.description }}
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}

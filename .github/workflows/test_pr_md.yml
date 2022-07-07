@@ -42,15 +42,16 @@ jobs:
           body="${body//$'\r'/'%0D'}" 
           echo "::set-output name=body::$body"
 
-      - name: update-pull-request
-        uses: kt3k/update-pr-description@v1.0.1
+      - name: pr update
+        uses: tzkhan/pr-update-action@v2
         with:
-          pr_body: ${{ steps.description.outputs.description }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-      # - name: Update comment
-      #   uses: peter-evans/create-or-update-comment@v2
+          repo-token: "${{ secrets.TEST_PAT }}"
+          base-branch-regex: '.*'
+          body-template: ${{ steps.get-comment-body.outputs.body }}
+          body-update-action: 'replace'
+          body-uppercase-base-match: false
+      # - name: update-pull-request
+      #   uses: kt3k/update-pr-description@v1.0.1
       #   with:
-      #     # issue-number: ${{ github.event.number }}
-      #     comment-id: ${{ steps.fc.outputs.comment-id }}
-      #     body: ${{ steps.get-comment-body.outputs.body }}
-      #     token: "${{ secrets.TEST_PAT }}"
+      #     pr_body: ${{ steps.description.outputs.description }}
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}

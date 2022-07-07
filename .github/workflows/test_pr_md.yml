@@ -34,7 +34,7 @@ jobs:
           test-branch master
 
       - name: show new file
-        run: ls -l repo/prMarkdown
+        run: ls -l repo/.prMarkdown
 
       - run: echo ${{ github.head_ref }}
       - run: echo ${{ github.base_ref }}

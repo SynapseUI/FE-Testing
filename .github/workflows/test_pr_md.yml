@@ -13,7 +13,7 @@ jobs:
           fetch-depth: 0
           path: repo
       - run: mkdir dev_scripts
-      # - run: npm i
+      - run: npm i
 
       - name: Check out dev scripts
         uses: actions/checkout@v2
@@ -21,9 +21,6 @@ jobs:
           repository: SynapseUI/dev_scripts
           token: "${{ secrets.TEST_PAT }}"
           path: 'dev_scripts'
-      # - run: npm i
-      - run: ls -la repo
-      - run: ls -la dev_scripts
-      - run: ls -la dev_scripts/scripts
-      # - run: ls -la ../dev_scripts/scripts
-      # - run: ls -la dev_scripts/scripts/makePrMarkdown.js
+      - run: npm i
+      - run: cat dev_scripts/scripts/makePrMarkdown.js
+      # - run: node dev_scripts/scripts/makePrMarkdown.js --print-only test-branch master

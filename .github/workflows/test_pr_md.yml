@@ -10,7 +10,7 @@ jobs:
       - run: mkdir diff_dir
       - uses: actions/checkout@v2
         with:
-          fetch-depth: 2
+          fetch-depth: 0
           path: repo
       # - uses: actions/checkout@v3
       #   with:
@@ -31,7 +31,7 @@ jobs:
       # - run: cd repo
       - run: ls -la repo
       - run: ls -la dev_scripts
-      - run: git -C repo diff --name-only HEAD^..HEAD
+      - run: git -C repo diff --name-only origin/master..origin/test-branch
       # - run: git --git-dir=repo --work-tree=diff_dir diff --name-only --no-index
       # - run: git -C repo diff --name-only master..test-branch
 

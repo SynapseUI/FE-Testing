@@ -27,7 +27,7 @@ jobs:
       - name: Run devscripts
         run: |
           node \
-          dev_scripts/makePrDesc \
+          dev_scripts/makePrDesc/ \
           --repo-dir=repo \
           --file-name=pr_desc \
           ${{ github.head_ref }} ${{ github.base_ref }}
